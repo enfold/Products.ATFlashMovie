@@ -18,10 +18,11 @@ def analyseContent(data):
     """ Analyzes content of (possible compressed) swf file
         and returns header's data as a dictionary
     """
+
     if len(data)<=(8+17):
         raise "Content error","data too small!"
     # Uncompressed flash file
-    if str(data[:3]) == 'FWS':
+    if (str(data[:3]) == 'FWS' or str(data[:3]) == 'FLV'):
         compressed=0
     # Version 6 or greater ZLIB compressed flash file
     elif ((str(data[:3]) == 'CWS') or (str(data[:3]) == 'FWC')):
